@@ -9,5 +9,7 @@ package Test;
  *
  */
 public class TestGit {
-	// test git
+	public static void main(String[] arg){
+		System.out.println("this is a github multiuser scenario test!");
+	}
 }
