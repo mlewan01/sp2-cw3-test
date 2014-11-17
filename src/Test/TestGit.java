@@ -11,5 +11,7 @@ package Test;
 public class TestGit {
 	public static void main(String[] arg){
 		System.out.println("this is a github multiuser scenario test!");
+		System.out.println("I pull the project, made changes to this file and pushed it back!");
+		
 	}
 }
