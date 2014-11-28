@@ -18,6 +18,8 @@ public class Building {
 	private ArrayList<Customer> customerList; // list of customers in the Building 
 	private int numberOfCustomers; 
 	private Elevator elevator;
+	int o = 1; // to indicate number of operations for easy output reading
+	int[][] table = {{15,5},{15,10},{14,4},{11,14},{4,0},{15,10},{5,0}};
 	
 	/**
 	 * Constructs instances of Building
@@ -32,13 +34,17 @@ public class Building {
 		ArrayList<Customer> myList = new ArrayList<>(); // Create ArrayList of type Customer
 		
 		for(int j = 1; j <= c; j++) {
-			myList.add(new Customer(j, numberOfFloors)); // Add instances of Customer to ArrayList	
+			Customer d = new Customer(j, numberOfFloors);
+			//d.setCurrentFloor(table[j-1][0]);
+			//d.setDestinationFloor(table[j-1][1]);
+			myList.add(d);
+			//myList.add(new Customer(j, numberOfFloors)); // Add instances of Customer to ArrayList
+			
 		}
 
 		this.customerList = myList; // Store instances of Customer in myList
 		
 		this.setElevator();
-
 	}
 	
 public static void main(String[] args) {
@@ -78,45 +84,58 @@ public static void main(String[] args) {
 	 */
 	public void defautlStrategy() {
 		elevator.setDirection(1);
-		for(int i = 0; i < elevator.getNumOfFloors(); i++) {
+		for(int i = 0; i <= elevator.getNumOfFloors(); i++) { // sign = causes the floor error
 			if(i == 13) {
 				continue;
 			}
 			this.checkFloor(i);
-			elevator.move();
+			if(i<elevator.getNumOfFloors())elevator.move();
 		}
 		System.out.println("---------------------------------------------");
 		elevator.setDirection(-1);
-		for(int i = elevator.getNumOfFloors(); i > 0; i--) {
+		for(int i = elevator.getNumOfFloors(); i >= 0; i--) {// sign = causes the floor error
 			if(i == 13) {
 				continue;
 			}
 			this.checkFloor(i);
-			elevator.move();	
+			if(i>0)elevator.move();	
 		}
 		// just some tests...
 		System.out.println("======================================================");
 		System.out.println("elevator register list size: " + elevator.registerList.size());
+		System.out.println(elevator.registerList);
 		System.out.println("building customer list size: " + this.customerList.size());
+		System.out.println(this.customerList);
 	}
-	public void checkFloor(int f){		
+	public void checkFloor(int f){
+		//int o,  to indicate number of operations for easier output reading
+		//System.out.println("this is \"f\" inside checkFloor: "+f);
 		for(int i = 0; i < this.customerList.size(); i++){
 			Customer c = this.customerList.get(i);
 			if(c.getCurrentFloor() == f){
-				System.out.println("customer " + c.getId() + " enters on the floor nr: "+ f);
+				//System.out.println(i);
+				System.out.print(o+". "); 
+				o++;
+				System.out.print("customer " + c.getId() + " enters on the floor nr: "+ f);
 				//if(this.customerList.remove(c)) System.out.println(c);
 				//elevator.registerList.add(c);
 				customerJoinsElevator(c);
 				this.customerList.remove(c);
+				System.out.println("    b_list: "+this.customerList.size()+"  e_list: "+elevator.registerList.size());
 			}
 		}
 		for(int i = 0; i < elevator.registerList.size(); i++){
 			Customer c = elevator.registerList.get(i);
+			//elevator.registerList.
 			if(c.getDestinationFloor() == f){
+				System.out.println(i);
+				System.out.print(o+". "); 
+				o++;
 				System.out.println("customer " + c.getId() + " exits on floor nr: " + f);
 				//if(elevator.registerList.remove(c)) System.out.println(c);
 				customerLeavesElevator(c);
 				//elevator.registerList.remove(i);
+				i--;
 			}
 		}
 	}

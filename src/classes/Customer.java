@@ -15,8 +15,8 @@ public class Customer {
 		Random ran = new Random();
 		
 		
-		int i = ran.nextInt(f);
-		int j = ran.nextInt(f);
+		int i = ran.nextInt(f+1);
+		int j = ran.nextInt(f+1);
 		
 		
 		if(i == 13) {
@@ -45,11 +45,16 @@ public class Customer {
 	public int getCurrentFloor() {
 		return currentFloor;
 	}
+	public void setCurrentFloor(int i){
+		this.currentFloor = i;
+	}
 	
 	public int getDestinationFloor() {
 		return destinationFloor;
 	}
-	
+	public void setDestinationFloor(int i){
+		this.destinationFloor = i;
+	}
 	
 	@Override
 	public int hashCode() {
