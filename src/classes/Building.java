@@ -122,6 +122,7 @@ public static void main(String[] args) {
 				customerJoinsElevator(c);
 				this.customerList.remove(c);
 				System.out.println("    b_list: "+this.customerList.size()+"  e_list: "+elevator.registerList.size());
+				i--;
 			}
 		}
 		for(int i = 0; i < elevator.registerList.size(); i++){

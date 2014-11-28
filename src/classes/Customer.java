@@ -25,17 +25,15 @@ public class Customer {
 		
 			currentFloor = i;
 		}
-		
+		if(i==j){
+			System.out.println(this.id + " current and destination were the same !!");
+			destinationFloor = (i+j+3)%f;
+		}
 		if(j == 13) {
 			destinationFloor = j + 1;
 		} else {
 			destinationFloor = j;
 		}
-		if(i==j){
-			System.out.println(this.id + " current and destination were the same !!");
-			destinationFloor = (i+j+3)%f;
-		}
-
 	}
 	
 	public int getId() {
